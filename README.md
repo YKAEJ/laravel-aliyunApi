@@ -1,5 +1,41 @@
 # laravel-aliyunApi
-laravel aliyun dns api , just a demo
-#安装
-composer require ykaej/aliyun
+>laravel aliyun dns api , just a demo
+
+# 安装
+>composer require ykaej/aliyun
+
+# For Laravel
+添加到 config/app.php 的 providers 中
+
+>'providers' => [
+     Ykaej\Aliyun\AliyunDnsProvider::class,
+],
+
+# 配置
+在 `.env` 文件中添加一下内容 
+>ALIYUN_ACCESS_KEYID=your_key
+>ALIYUN_ACCESS_SECRET=you_secret
+
+# 使用
+````
+    public function index(DNSDomain $domain)
+    {
+        //获取所有子域名
+        $domain->aliyunDnsList('domain.com');
+        
+        //添加一个子域名解析
+        $domain->aliyunDnsCreate($domainName, $rr, $value, $type='A', $ttl=600, $line='default');
+       
+        //修改一个子域名解析
+        $domain->aliyunDnsUpdate($recordId, $rr, $value, $type='A', $ttl=600, $line='default');
+        
+        //修改一个子域名解析状态
+        $domain->aliyunDnsEditStatus($record_id, $status); //status : 'Disable' or 'Enable'
+        
+        //删除一个子域名
+        $domain->aliyunDnsDelete($record_id);
+    }
+````
+
+
 
