@@ -6,16 +6,20 @@
 
 # For Laravel
 添加到 config/app.php 的 providers 中
-
->'providers' => [
-     Ykaej\Aliyun\AliyunDnsProvider::class,
+````
+'providers' => [
+    ...
+    Ykaej\Aliyun\AliyunDnsProvider::class,
+    ...
 ],
+````
 
 # 配置
-在 `.env` 文件中添加一下内容 
->ALIYUN_ACCESS_KEYID=your_key
->ALIYUN_ACCESS_SECRET=you_secret
-
+在 `.env` 文件中添加一下内容
+````
+ALIYUN_ACCESS_KEYID=your_key
+ALIYUN_ACCESS_SECRET=you_secret
+````
 # 使用
 ````
     public function index(DNSDomain $domain)
