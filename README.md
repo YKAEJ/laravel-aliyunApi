@@ -34,7 +34,7 @@ ALIYUN_ACCESS_SECRET=you_secret
         $domain->aliyunDnsUpdate($recordId, $rr, $value, $type='A', $ttl=600, $line='default');
         
         //修改一个子域名解析状态
-        $domain->aliyunDnsEditStatus($record_id, $status); //status : 'Disable' or 'Enable'
+        $domain->aliyunDnsEditStatus($record_id, $status); //当前状态 status : 'Disable' or 'Enable'
         
         //删除一个子域名
         $domain->aliyunDnsDelete($record_id);
