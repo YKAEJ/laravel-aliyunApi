@@ -1,2 +1,5 @@
 # laravel-aliyunApi
-laravel aliyun api , just a demo
+laravel aliyun dns api , just a demo
+#安装
+composer require ykaej/aliyun
+

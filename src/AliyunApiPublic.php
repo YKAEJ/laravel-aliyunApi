@@ -53,9 +53,9 @@ class AliyunApiPublic
         curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,FALSE);
 
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
-        //获取
+
         $data = curl_exec($curl);
-        //返回错误
+
         if (curl_errno($curl)){
             return curl_error($curl);
         }
