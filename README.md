@@ -22,6 +22,8 @@ ALIYUN_ACCESS_SECRET=you_secret
 ````
 # 使用
 ````
+    use Ykaej\Aliyun\DNSDomain;
+
     public function index(DNSDomain $domain)
     {
         //获取所有子域名
