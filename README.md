@@ -5,7 +5,7 @@
 >composer require ykaej/aliyun
 
 # For Laravel
-添加到 config/app.php 的 providers 中
+添加到 `config/app.php` 的 `providers` 中
 ````
 'providers' => [
     ...
@@ -23,13 +23,18 @@ ALIYUN_ACCESS_SECRET=you_secret
 # 使用
 ````
     use Ykaej\Aliyun\DNSDomain;
-
+    // 依赖注入 或 使用 app('aliyun_dns')
     public function index(DNSDomain $domain)
     {
+        $dns = app('aliyun_dns');
         //获取所有子域名
+        $dns->aliyunDnsList('domain.com');
+        // or 
         $domain->aliyunDnsList('domain.com');
         
         //添加一个子域名解析
+        $dns->aliyunDnsCreate($domainName, $rr, $value, $type='A', $ttl=600, $line='default');
+        // or 
         $domain->aliyunDnsCreate($domainName, $rr, $value, $type='A', $ttl=600, $line='default');
        
         //修改一个子域名解析
