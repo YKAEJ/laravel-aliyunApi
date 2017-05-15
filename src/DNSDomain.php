@@ -20,7 +20,7 @@ class DNSDomain extends AliyunApiPublic
     /**
      * 获取阿里云全部分页信息
      * @param $domain string 域名
-     * @return array
+     * @return array|string
      */
     public function aliyunDnsList($domain)
     {
@@ -31,6 +31,9 @@ class DNSDomain extends AliyunApiPublic
             'PageSize' => $this->pageSize,
         ];
         $domains[] = $this->aliyunDealApi($apiParams);
+        if (isset($domains[0]['Code'])){
+            return isset($domains[0]['Message'])?$domains[0]['Message']:'信息填写错误';
+        }
         //页数
         $page_count = ceil($domains[0]['TotalCount'] / $domains[0]['PageSize']);
         if ($page_count >= 2){
@@ -58,7 +61,7 @@ class DNSDomain extends AliyunApiPublic
      * 修改状态
      * @param $record_id string 唯一id值
      * @param $status string 状态 Enable 开 Disable 关
-     * @return array
+     * @return array|string
      */
     public function aliyunDnsEditStatus($record_id, $status)
     {
@@ -68,7 +71,12 @@ class DNSDomain extends AliyunApiPublic
             'RecordId' => $record_id,
             'Status' => $status
         ];
-        return $this->aliyunDealApi($apiParams);
+
+        $domains = $this->aliyunDealApi($apiParams);
+        if (isset($domains['Code'])){
+            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+        }
+        return $domains;
     }
 
 
@@ -80,7 +88,7 @@ class DNSDomain extends AliyunApiPublic
      * @param string $type 解析记录类型
      * @param int $ttl 生存时间
      * @param string $line 解析线路
-     * @return array
+     * @return array|string
      */
     public function aliyunDnsCreate($domainName, $rr, $value, $type='A', $ttl=600, $line='default')
     {
@@ -94,14 +102,18 @@ class DNSDomain extends AliyunApiPublic
             'Line' => $line
         ];
         //api请求
-        return $this->aliyunDealApi($apiParams);
+        $domains = $this->aliyunDealApi($apiParams);
+        if (isset($domains['Code'])){
+            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+        }
+        return $domains;
 
     }
 
     /**
      * 删除解析
      * @param $record_id
-     * @return array
+     * @return array|string
      */
     public function aliyunDnsDelete($record_id)
     {
@@ -109,7 +121,11 @@ class DNSDomain extends AliyunApiPublic
             'Action' => 'DeleteDomainRecord',
             'RecordId' => $record_id
         ];
-        return $this->aliyunDealApi($apiParams);
+        $domains = $this->aliyunDealApi($apiParams);
+        if (isset($domains['Code'])){
+            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+        }
+        return $domains;
 
     }
 
@@ -121,7 +137,7 @@ class DNSDomain extends AliyunApiPublic
      * @param string $type 解析记录类型
      * @param int $ttl 生存时间
      * @param string $line 解析线路
-     * @return array
+     * @return array|string
      */
     public function aliyunDnsUpdate($recordId, $rr, $value, $type='A', $ttl=600, $line='default')
     {
@@ -134,7 +150,11 @@ class DNSDomain extends AliyunApiPublic
             'TTL' => $ttl,
             'Line' => $line
         ];
-        return $this->aliyunDealApi($apiParams);
+        $domains = $this->aliyunDealApi($apiParams);
+        if (isset($domains['Code'])){
+            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+        }
+        return $domains;
 
     }
 
