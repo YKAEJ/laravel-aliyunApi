@@ -32,7 +32,7 @@ class DNSDomain extends AliyunApiPublic
         ];
         $domains[] = $this->aliyunDealApi($apiParams);
         if (isset($domains[0]['Code'])){
-            return isset($domains[0]['Message'])?$domains[0]['Message']:'信息填写错误';
+            return $this->callbackMessage($domains[0]['Message']);
         }
         //页数
         $page_count = ceil($domains[0]['TotalCount'] / $domains[0]['PageSize']);
@@ -74,7 +74,7 @@ class DNSDomain extends AliyunApiPublic
 
         $domains = $this->aliyunDealApi($apiParams);
         if (isset($domains['Code'])){
-            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+            return $this->callbackMessage($domains[0]['Message']);
         }
         return $domains;
     }
@@ -104,7 +104,7 @@ class DNSDomain extends AliyunApiPublic
         //api请求
         $domains = $this->aliyunDealApi($apiParams);
         if (isset($domains['Code'])){
-            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+            return $this->callbackMessage($domains[0]['Message']);
         }
         return $domains;
 
@@ -123,7 +123,7 @@ class DNSDomain extends AliyunApiPublic
         ];
         $domains = $this->aliyunDealApi($apiParams);
         if (isset($domains['Code'])){
-            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+            return $this->callbackMessage($domains[0]['Message']);
         }
         return $domains;
 
@@ -152,10 +152,19 @@ class DNSDomain extends AliyunApiPublic
         ];
         $domains = $this->aliyunDealApi($apiParams);
         if (isset($domains['Code'])){
-            return isset($domains['Message'])?$domains['Message']:'信息填写错误';
+            return $this->callbackMessage($domains[0]['Message']);
         }
         return $domains;
 
+    }
+
+    /**
+     * @param $message
+     * @return string
+     */
+    protected function callbackMessage($message)
+    {
+        return isset($message)?$message:'信息填写错误';
     }
 
 }

@@ -155,7 +155,7 @@ class AliyunApiPublic
      */
     public function getAccessKeyId()
     {
-        return env('ALIYUN_ACCESS_KEYID');
+        return env('ALIYUN_ACCESS_KEYID','');
     }
 
     /**
@@ -163,7 +163,7 @@ class AliyunApiPublic
      */
     public function getAccessSecret()
     {
-        return env('ALIYUN_ACCESS_SECRET');
+        return env('ALIYUN_ACCESS_SECRET','');
     }
 
     /**
